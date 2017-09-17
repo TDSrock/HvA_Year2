@@ -9,6 +9,11 @@ namespace Datastruct_and_algo_excersizes
 {
     class Excersize
     {
+        public int n;
+        public Excersize(int n)
+        {
+            this.n = n;
+        }
         virtual public int run()
         {
             return 0;

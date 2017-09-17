@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Excersize 1.cs" />
     <Compile Include="Excersize.cs" />
+    <Compile Include="Excersize1_Q3.cs" />
+    <Compile Include="Excersize_1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
