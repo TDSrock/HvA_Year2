@@ -301,8 +301,8 @@ __pycache__/
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-/.vs/
-ExportedObj/
+**/.vs**/
+ExportedObj**/
 *.svd
 *.userprefs
 *.csproj
