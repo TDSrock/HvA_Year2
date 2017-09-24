@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollowMe : MonoBehaviour {
+public class BulletBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
