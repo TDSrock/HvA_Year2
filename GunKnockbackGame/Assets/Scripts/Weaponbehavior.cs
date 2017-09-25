@@ -71,6 +71,7 @@ public class WeaponBehavior : MonoBehaviour {
                 }
                 GameObject fired = Instantiate(projectile, this.transform);
                 fired.transform.Rotate(DirFromAngle(angle, false));
+                
                 if(!bottomlessClip)
                 {
                     currentAmmo -= ammoCost;
@@ -89,13 +90,22 @@ public class WeaponBehavior : MonoBehaviour {
 
     public void StartReload()
     {
-        reloading = true;
-        reloadTimer = reloadTime;
-        this.Reload();
+        if (!reloading)
+        {
+            reloading = true;
+            reloadTimer = reloadTime;
+            this.Reload();
+        }
     }
 
     public void Reload()
     {
+        reloadTimer -= Time.deltaTime;
+        if(reloadTimer > 0)
+        {
+            reloading = false;
+            currentAmmo = maxAmmo;
+        }
 
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour {
+    Vector3 velocity;
 
 	// Use this for initialization
 	void Start () {
