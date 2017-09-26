@@ -4,16 +4,20 @@ using UnityEngine;
 
 [System.Serializable]
 public class WeaponBehavior : MonoBehaviour {
+    [SerializeField] private Ship owner;//place the ship instance here that "owns" the weapon
+    [SerializeField] public List<BulletBehavior> activeProjectiles = new List<BulletBehavior>();
 
     //normal shooting vars
-    [SerializeField] private static float rechargeTime = 5f;
-    [SerializeField] private float timeTillNextAttack = rechargeTime;
+    [SerializeField] private float rechargeTime = 2f;
+    [SerializeField] private float timeTillNextAttack = 0;
     [SerializeField] private bool readyToFire = true;
-    [SerializeField] [Range(1, 256)] private float projectileCount = 1;
-    [SerializeField] private bool randomArc = false; //weither or not each pellet gets a random angle within the arc
-    /*[HideInInspector]*/[SerializeField] public float arcAngle;
+    [SerializeField] private bool randomArc = false; //weither or not each projectile gets a random angle within the arc
+    /*[HideInInspector]*/[SerializeField] [Range(0, 360)] public float arcAngle;
     /*[HideInInspector]*/[SerializeField] private float halfArcAngle;
-    [SerializeField] private GameObject projectile;
+    [SerializeField] [Range(1, 256)] private float projectileCount = 1;
+    [SerializeField] private float projectileSpeed = 3;
+    [SerializeField] private BulletBehavior projectile;
+    [SerializeField] private LayerMask projectileTargetMask;
 
     //Ammo and reload related vars
     [SerializeField] public static double maxAmmo = 30;
@@ -24,6 +28,8 @@ public class WeaponBehavior : MonoBehaviour {
     [SerializeField] public bool bottomlessClip = false;
     [SerializeField] private float ammoCost = 1;//per projectile
     [SerializeField] private bool autoReload = true;
+
+    [SerializeField] private float recoil = 3f;
 
     [SerializeField] public float _arcAngle
     {
@@ -37,15 +43,25 @@ public class WeaponBehavior : MonoBehaviour {
 
     [SerializeField] public bool _enoughAmmo
     {
-        get { return this.currentAmmo < 0; }
+        get { return this.currentAmmo > ammoCost; }
+    }
+
+    public void Start()
+    {
+        owner = (Ship)GetComponentInParent(typeof(Ship));
     }
 
     public void Update()
     {
+        _arcAngle = this.arcAngle;//TODO: Remove this from here once done with testing
         if (!readyToFire)
         {
             timeTillNextAttack -= Time.deltaTime;
             readyToFire = timeTillNextAttack < 0;
+        }
+        if (reloading)
+        {
+            this.Reload();
         }
         
     }
@@ -56,28 +72,40 @@ public class WeaponBehavior : MonoBehaviour {
         {
             readyToFire = false;
             timeTillNextAttack = rechargeTime;
-            var projectilesToFire = projectileCount * ammoCost / currentAmmo;
+            var projectilesToFire =  currentAmmo / ammoCost;
+            projectilesToFire = projectileCount;
+            Debug.Log(projectilesToFire);
+            //projectilesToFire = (projectilesToFire < projectileCount) ? projectilesToFire : projectileCount;//make sure we don't create too many
+            Debug.Log(projectilesToFire);
             for (int i = 0; i < projectilesToFire; i++)
             {
-                float angle;
+                float angle = 0;
                 if (randomArc)
                 {
-                    angle = Random.Range(-halfArcAngle, halfArcAngle);
+                    angle = Random.Range(-arcAngle, arcAngle);
                 }
                 else
                 {
                     //TODO: Ensure the below angle works properly(this solution works for multiples of 2
-                    angle = -halfArcAngle + ((float)i / projectileCount * arcAngle);
+                    angle = -arcAngle + ((float)i / projectileCount * arcAngle);
                 }
-                GameObject fired = Instantiate(projectile, this.transform);
-                fired.transform.Rotate(DirFromAngle(angle, false));
+                BulletBehavior fired = Instantiate(projectile);
+                fired.transform.position = this.transform.position;
+                var bulletForward = (this.transform.forward + DirFromAngle(angle, false)).normalized;
+                bulletForward.y = 0;
+                fired.transform.forward = bulletForward;
+                fired.velocity = projectileSpeed;
+                fired.creator = this;
+                fired.targetMask = projectileTargetMask;
+                owner.velocity += -bulletForward * recoil;
+                this.activeProjectiles.Add(fired);
                 
-                if(!bottomlessClip)
+                if(!bottomlessClip)//bottomless clip never loses ammo
                 {
                     currentAmmo -= ammoCost;
                 }
             }
-            if(currentAmmo < ammoCost)
+            if(!_enoughAmmo)
             {
                 if(autoReload)
                 {
@@ -101,7 +129,7 @@ public class WeaponBehavior : MonoBehaviour {
     public void Reload()
     {
         reloadTimer -= Time.deltaTime;
-        if(reloadTimer > 0)
+        if (reloadTimer <= 0)
         {
             reloading = false;
             currentAmmo = maxAmmo;
