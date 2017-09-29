@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 128970972}
   - component: {fileID: 128970971}
   - component: {fileID: 128970970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,6 +506,124 @@ Transform:
   m_PrefabParentObject: {fileID: 4602442491204044, guid: 437101cbddfdc4c45bd7f60cf78f8e82,
     type: 2}
   m_PrefabInternal: {fileID: 395661410}
+--- !u!1 &646331250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 646331251}
+  - component: {fileID: 646331255}
+  - component: {fileID: 646331254}
+  - component: {fileID: 646331253}
+  - component: {fileID: 646331252}
+  m_Layer: 10
+  m_Name: Weapon (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &646331251
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646331250}
+  m_LocalRotation: {x: 9.539278e-18, y: -0, z: 2.5248366e-17, w: 1}
+  m_LocalPosition: {x: -0.13, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1322644442}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &646331252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646331250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878a137e4b4796d4a8726f209e62bf34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  activeProjectiles: []
+  rechargeTime: 0.1
+  timeTillNextAttack: 0
+  readyToFire: 1
+  randomArc: 0
+  arcAngle: 0
+  halfArcAngle: 0
+  projectileCount: 1
+  projectileSpeed: 8
+  projectile: {fileID: 114976779782953244, guid: b5a8ca0898ca7ce4988c4c506945f5ee,
+    type: 2}
+  projectileTargetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  maxAmmo: 30
+  currentAmmo: 30
+  reloadTime: 5
+  reloadTimer: 0
+  reloading: 0
+  bottomlessClip: 1
+  ammoCost: 1
+  autoReload: 1
+  recoil: 1
+--- !u!23 &646331253
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646331250}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!135 &646331254
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646331250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &646331255
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 646331250}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &661601196
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +855,7 @@ MonoBehaviour:
   weapons: []
   velocity: {x: 0, y: 0, z: 0}
   drag: 0.98
-  thrusterPower: 0.001
+  thrusterPower: 0.005
   health: 100
 --- !u!114 &1322644438
 MonoBehaviour:
@@ -817,6 +935,7 @@ Transform:
   m_Children:
   - {fileID: 1691058581}
   - {fileID: 1366299214}
+  - {fileID: 646331251}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -871,18 +990,19 @@ MonoBehaviour:
   owner: {fileID: 0}
   activeProjectiles: []
   rechargeTime: 1
-  timeTillNextAttack: 5
+  timeTillNextAttack: 0
   readyToFire: 1
   randomArc: 0
   arcAngle: 0
   halfArcAngle: 0
   projectileCount: 1
-  projectileSpeed: 3
+  projectileSpeed: 8
   projectile: {fileID: 114976779782953244, guid: b5a8ca0898ca7ce4988c4c506945f5ee,
     type: 2}
   projectileTargetMask:
     serializedVersion: 2
     m_Bits: 512
+  maxAmmo: 30
   currentAmmo: 30
   reloadTime: 5
   reloadTimer: 0
@@ -1137,9 +1257,9 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 20
   m_Depth: -1
   m_CullingMask:
@@ -1163,7 +1283,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663614982}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 0, y: 45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1277,19 +1397,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   activeProjectiles: []
-  rechargeTime: 1
-  timeTillNextAttack: 5
+  rechargeTime: 2
+  timeTillNextAttack: 0
   readyToFire: 1
   randomArc: 0
   arcAngle: 0
   halfArcAngle: 0
   projectileCount: 1
-  projectileSpeed: 3
+  projectileSpeed: 5
   projectile: {fileID: 114976779782953244, guid: b5a8ca0898ca7ce4988c4c506945f5ee,
     type: 2}
   projectileTargetMask:
     serializedVersion: 2
     m_Bits: 512
+  maxAmmo: 30
   currentAmmo: 30
   reloadTime: 5
   reloadTimer: 0
@@ -1297,7 +1418,7 @@ MonoBehaviour:
   bottomlessClip: 0
   ammoCost: 1
   autoReload: 1
-  recoil: 3
+  recoil: 6
 --- !u!1 &1715177418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1699,7 @@ GameObject:
   - component: {fileID: 1951071778}
   - component: {fileID: 1951071777}
   - component: {fileID: 1951071776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1660,7 +1781,7 @@ GameObject:
   - component: {fileID: 2027833803}
   - component: {fileID: 2027833802}
   - component: {fileID: 2027833801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1770,10 +1891,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4602442491204044, guid: 437101cbddfdc4c45bd7f60cf78f8e82, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 437101cbddfdc4c45bd7f60cf78f8e82, type: 2}
   m_IsPrefabParent: 0
@@ -1788,7 +1905,7 @@ GameObject:
   - component: {fileID: 2076897128}
   - component: {fileID: 2076897127}
   - component: {fileID: 2076897126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

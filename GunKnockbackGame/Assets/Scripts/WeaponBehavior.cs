@@ -20,8 +20,8 @@ public class WeaponBehavior : MonoBehaviour {
     [SerializeField] private LayerMask projectileTargetMask;
 
     //Ammo and reload related vars
-    [SerializeField] public static double maxAmmo = 30;
-    [SerializeField] public double currentAmmo = maxAmmo;
+    [SerializeField] public double maxAmmo = 30;
+    [SerializeField] public double currentAmmo;
     [SerializeField] public float reloadTime = 10f;
     [SerializeField] public float reloadTimer;//time left on current reload
     [SerializeField] public bool reloading = false;
@@ -49,6 +49,7 @@ public class WeaponBehavior : MonoBehaviour {
     public void Start()
     {
         owner = (Ship)GetComponentInParent(typeof(Ship));
+        currentAmmo = maxAmmo;
     }
 
     public void Update()

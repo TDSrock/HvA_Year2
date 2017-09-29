@@ -57,14 +57,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449468916338296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.77, y: 1.22, z: -23.78}
+  m_LocalRotation: {x: 0, y: 0.42261827, z: 0, w: 0.9063079}
+  m_LocalPosition: {x: 11.77, y: 1.22, z: 23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4958294836026016}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 50, z: 0}
 --- !u!4 &4958294836026016
 Transform:
   m_ObjectHideFlags: 1
@@ -209,24 +209,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   activeProjectiles: []
-  rechargeTime: 3.5
+  rechargeTime: 2.5
   timeTillNextAttack: 0
   readyToFire: 1
   randomArc: 1
   arcAngle: 140
   halfArcAngle: 0
   projectileCount: 3
-  projectileSpeed: 3
+  projectileSpeed: 10
   projectile: {fileID: 114038808170511458, guid: 38564bc4898507a4f9fd973b772ea52d,
     type: 2}
   projectileTargetMask:
     serializedVersion: 2
     m_Bits: 1024
-  currentAmmo: 30
-  reloadTime: 10
+  maxAmmo: 30
+  currentAmmo: 90
+  reloadTime: 2
   reloadTimer: 0
   reloading: 0
-  bottomlessClip: 1
+  bottomlessClip: 0
   ammoCost: 1
   autoReload: 1
   recoil: 0
