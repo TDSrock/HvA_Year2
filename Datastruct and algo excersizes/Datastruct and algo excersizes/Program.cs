@@ -11,54 +11,87 @@ namespace Datastruct_and_algo_excersizes
     {
         static void Main(string[] args)
         {
-            Console.WindowWidth = (int)(Console.LargestWindowWidth /1.5);
+            Console.WindowWidth = (int)(Console.LargestWindowWidth /1.3);
+            Console.WindowHeight = (int)(Console.LargestWindowHeight / 1.3);
+
+            bool printTestResultsDuring = false;//weither or not we should print the test results during the tests or not
+            bool beepAfterEachTest = false;//wiether or not console.beep() is called after each test(only enable on LONG tests)
+            bool printExcersizeResultsDuring = true;//weither or not we should print excersize results during the tests or not
+            bool beepAfterExersize = true;// weither or not console.beep() is called after each excersize(usefull if running several long excersizes)
+            bool printAllResultsAtEnd = true;//weither or not we should print all the results at the end 
+            bool beepAfterAllExcersizes = true;//weither or not console.beep() is called when all results have been posted(usefull on long or many excersizes so you can hear when the program is done)
+
             //setup a timer
             Stopwatch timer = new Stopwatch();
             Stopwatch testTimer = new Stopwatch();
 
             //setup paramaters for classes
             //setup excersizes to run.
-            Dictionary<Excersize, int> excersizes = new Dictionary<Excersize, int>();
-            excersizes.Add(new Excersize_1_Q3(100), 5000);
-            excersizes.Add(new Excersize_1_Q3(200), 5000);
-            excersizes.Add(new Excersize_1_Q3(400), 5000);
-            excersizes.Add(new Excersize_1_Q3(800), 5000);
-            excersizes.Add(new Excersize_1_Q3(1600), 5000);
-            excersizes.Add(new Excersize_1(100), 5000);
-            excersizes.Add(new Excersize_1(200), 5000);
-            excersizes.Add(new Excersize_1(400), 5000);
-            excersizes.Add(new Excersize_1(800), 5000);
+            Dictionary<Excersize, Tuple<int, string[]>> excersizes = new Dictionary<Excersize, Tuple<int, string[]>>
+            {
+                { new Excersize2_Q1(), new Tuple<int, string[]>(1, new string[] { "words=10", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q2(), new Tuple<int, string[]>(1, new string[] { "words=10", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Bonus(), new Tuple<int, string[]>(1, new string[] { "words=10", "generate", "printwords", "numbertagwords" }) }
+            };
             List<string> testResults = new List<string>();
 
-            foreach(KeyValuePair<Excersize, int> entry in excersizes)
+            foreach(KeyValuePair<Excersize, Tuple<int, string[]>> entry in excersizes)
             {
-                int[] results = new int[entry.Value];
-                double[] times = new double[entry.Value];
+                int[] results = new int[entry.Value.Item1];
+                double[] times = new double[entry.Value.Item1];
                 testTimer.Restart();
-                for(int i = 0; i < entry.Value; i++)
+                for(int i = 0; i < entry.Value.Item1; i++)
                 {
+                    entry.Key.ConstructData(entry.Value.Item2);//have the excersize construct it's dataset.
                     timer.Restart();//make sure the timer is ready to rock
                     var result = entry.Key.run();//run the excersize
                     timer.Stop();
                     times[i] = timer.Elapsed.TotalMilliseconds;
                     results[i] = result;
-                    //comment and un-comment this line if you want to keep track of test progress(recommended to have the line on if debugging or running tests that take a large amount of time)
-                    //Console.WriteLine("{0,-60} has completed in {1,10:0.0000} milliseconds Result was {2,5} this was run {3,6}", entry.Key, times[i], result, (i + 1));
+                    if(printTestResultsDuring)
+                        Console.WriteLine("{0,-60} has completed in {1,10:0.0000} milliseconds Result was {2,5} this was run {3,6}", entry.Key, times[i], result, (i + 1));
+                    if (beepAfterEachTest)
+                        Console.Beep();
                 }
                 testTimer.Stop();
+                string paramArgs = StringArrayToString(entry.Value.Item2);
                 string testResult = string.Format("{0,-60} All {4,8} tests completed " +
-                    "\r\nAverage time = {1,30:0.000000000000000} milliseconds, full test time: {2,30:0.000000000000000} milliseconds(includes upper for loop for tests)" +
-                    "\r\nAverage result = {3,30:0.000000} variable n was: {5,10}\r\n", entry.Key, CalcAvg(times), testTimer.Elapsed.TotalMilliseconds, CalcAvg(results), entry.Value, entry.Key.n);
+                    "\r\nAverage time = {1,30:0.000000000000000} milliseconds, full test time: {2,30:0.000000000000000} milliseconds(includes upper for loop for tests and dataconstruction)" +
+                    "\r\nAverage result = {3,28:0.000000000000000}   paramArgs: {5,-1}\r\n", entry.Key, CalcAvg(times), testTimer.Elapsed.TotalMilliseconds, CalcAvg(results), entry.Value.Item1, paramArgs);
+                if (printExcersizeResultsDuring)
+                    Console.WriteLine("\r\n" + testResult);
+                if (beepAfterExersize)
+                    Console.Beep();
                 testResults.Add(testResult);
             }
-            //echo out each tests results
-            foreach(string s in testResults)
+            if (printAllResultsAtEnd)
             {
-                Console.WriteLine(s);
+                Console.WriteLine("\r\n" +
+                    "Full report:\r\n");
+                //echo out each tests results
+                foreach (string s in testResults)
+                {
+                    Console.WriteLine(s);
+                }
+                if (beepAfterAllExcersizes)
+                    Console.Beep();
             }
 
+            Console.WriteLine(String.Format("Print settings were: \r\n{0,7} printTestResultsDuring  " +
+                "\r\n{1,7} printExcersizeResultsDuring  " +
+                "\r\n{2,7} printAllResultsAtEnd", printTestResultsDuring, printExcersizeResultsDuring, printAllResultsAtEnd));
             Console.WriteLine("press enter key to close");
             Console.ReadLine();
+        }
+
+        public static string StringArrayToString(string[] s)
+        {
+            string r = "";
+            foreach(string param in s)
+            {
+                r += param + " | ";
+            }
+            return r.Substring(0, r.Length - 3);
         }
 
         public static double CalcAvg(double[] a)

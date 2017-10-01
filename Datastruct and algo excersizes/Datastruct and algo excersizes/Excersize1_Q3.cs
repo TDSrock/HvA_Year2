@@ -9,21 +9,27 @@ namespace Datastruct_and_algo_excersizes
 {
     class Excersize_1_Q3 : Excersize
     {
-        public Excersize_1_Q3(int n) : base(n)
+        public Excersize_1_Q3()
         {
 
         }
-        
-        public override int run()
+
+        private int[] data;
+
+        public override void ConstructData(string[] paramArgs = null)
         {
-            int entities = this.n;
-            int[] data = new int[10000];//must be declared in the run method otherwise we get cross contamination
+            base.ConstructData(paramArgs);
+            int entities = this._n;
+            this.data = new int[10000];
             Random random = new Random(Guid.NewGuid().GetHashCode());
-            for(int i = 0; i<entities; i++)
+            for (int i = 0; i < entities; i++)
             {
                 data[random.Next(data.Length)]++;
             }
+        }
 
+        public override int run()
+        {
             return HasMore.HasTwoOrMore(data);
         }
     }

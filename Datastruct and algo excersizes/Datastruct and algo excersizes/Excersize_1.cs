@@ -12,23 +12,29 @@ namespace Datastruct_and_algo_excersizes
     
     class Excersize_1 : Excersize
     {
-        public Excersize_1(int n) : base(n)
+        int[] highScores;
+        public Excersize_1()
         {
+
+        }
+
+        public override void ConstructData(string[] paramArgs = null)
+        {
+            base.ConstructData(paramArgs);
+            int entities = this._n;
+            this.highScores = new int[entities];
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+            //construct data
+            for (int i = 0; i < highScores.Length; i++)
+            {
+                highScores[i] = random.Next(10000);
+            }
 
         }
 
         public override int run()
         {
-            int entities = this.n;
-            int[] highScores = new int[entities];
-            //int value = 0;
-            Random random = new Random(Guid.NewGuid().GetHashCode());
-            //construct data
-            for (int i=0; i < highScores.Length; i++)
-            {
-                highScores[i] = random.Next(10000);
-            }
-            var re = HasDupe.HasDuplicate(highScores);
+            var re = HasDupe.HasDuplicate(this.highScores);
             return re;//replace this with whatever you want to report.
         }
 
