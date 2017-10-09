@@ -32,7 +32,7 @@ public class BulletBehavior : MonoBehaviour {
             {
                 col = (Ship)targets[0].gameObject.GetComponentInChildren(typeof(Ship));
             }
-            col.health -= this.damage;
+            col._currentHealth -= this.damage;
             DestroyObject(this.gameObject);
         }
 

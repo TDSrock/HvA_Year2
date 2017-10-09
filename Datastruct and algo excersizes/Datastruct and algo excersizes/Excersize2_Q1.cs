@@ -22,7 +22,7 @@ namespace Datastruct_and_algo_excersizes
                 {
                     input = false;
                     Random random = new Random(Guid.NewGuid().GetHashCode());
-                    for(int i = 0; i < this._words; i++)
+                    for(int i = 0; i < this._words; i++)//build words equaal too the param provided
                     {
                         var length = random.Next(3, 10);
                         var word = generateRandomString(length, random);
@@ -57,8 +57,8 @@ namespace Datastruct_and_algo_excersizes
 
         public override int run()
         {
-
-             Console.WriteLine("contents:\n" + GenerateContentsString(data));
+            var s = GenerateContentsString(data);
+             //Console.WriteLine("contents:\n" + s);
 
             return base.run();
         }
@@ -82,7 +82,7 @@ namespace Datastruct_and_algo_excersizes
             char[] word = new char[length];
             for(int i = 0; i < length; i++)
             {
-                word[i] = (char)random.Next(65, 122);
+                word[i] = (char)random.Next('Z', 'a');
             }
             return new string(word);
         }

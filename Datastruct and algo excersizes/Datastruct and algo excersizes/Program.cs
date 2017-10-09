@@ -14,12 +14,12 @@ namespace Datastruct_and_algo_excersizes
             Console.WindowWidth = (int)(Console.LargestWindowWidth /1.3);
             Console.WindowHeight = (int)(Console.LargestWindowHeight / 1.3);
 
-            bool printTestResultsDuring = false;//weither or not we should print the test results during the tests or not
-            bool beepAfterEachTest = false;//wiether or not console.beep() is called after each test(only enable on LONG tests)
-            bool printExcersizeResultsDuring = true;//weither or not we should print excersize results during the tests or not
-            bool beepAfterExersize = true;// weither or not console.beep() is called after each excersize(usefull if running several long excersizes)
-            bool printAllResultsAtEnd = true;//weither or not we should print all the results at the end 
-            bool beepAfterAllExcersizes = true;//weither or not console.beep() is called when all results have been posted(usefull on long or many excersizes so you can hear when the program is done)
+            bool printTestResultsDuring = false;//whether or not we should print the test results during the tests or not
+            bool beepAfterEachTest = false;//whether or not console.beep() is called after each test(only enable on LONG tests)
+            bool printExcersizeResultsDuring = true;//whether or not we should print excersize results during the tests or not
+            bool beepAfterExersize = false;// whether or not console.beep() is called after each excersize(usefull if running several long excersizes)
+            bool printAllResultsAtEnd = true;//whether or not we should print all the results at the end 
+            bool beepAfterAllExcersizes = true;//whether or not console.beep() is called when all results have been posted(usefull on long or many excersizes so you can hear when the program is done)
 
             //setup a timer
             Stopwatch timer = new Stopwatch();
@@ -29,9 +29,15 @@ namespace Datastruct_and_algo_excersizes
             //setup excersizes to run.
             Dictionary<Excersize, Tuple<int, string[]>> excersizes = new Dictionary<Excersize, Tuple<int, string[]>>
             {
-                { new Excersize2_Q1(), new Tuple<int, string[]>(1, new string[] { "words=10", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q2(), new Tuple<int, string[]>(1, new string[] { "words=10", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Bonus(), new Tuple<int, string[]>(1, new string[] { "words=10", "generate", "printwords", "numbertagwords" }) }
+                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=100", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=200", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=400", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=800", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=100", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=200", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=400", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=800", "generate", /*"printwords",*/ "numbertagwords" }) },
+                { new Excersize2_Bonus(), new Tuple<int, string[]>(10, new string[] { "words=100", "generate", "printwords", "numbertagwords" }) }
             };
             List<string> testResults = new List<string>();
 

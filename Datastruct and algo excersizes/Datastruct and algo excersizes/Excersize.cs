@@ -41,6 +41,7 @@ namespace Datastruct_and_algo_excersizes
                             catch (Exception e)
                             {
                                 Console.WriteLine("Missing property: _" + variableName + "\nOccured in " + this + " please check the param args and remove or add the property too the base-class if intended\n");
+                                Console.WriteLine(e.StackTrace);
                                 missingPorperties.Add(variableName);
                                 Console.Beep();
                             }

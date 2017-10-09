@@ -57,8 +57,8 @@ namespace Datastruct_and_algo_excersizes
 
         public override int run()
         {
-
-            Console.WriteLine("contents:\n" + GenerateContentsString(data));
+            var s = GenerateContentsString(data);
+            //Console.WriteLine("contents:\n" + s);
 
             return base.run();
         }
