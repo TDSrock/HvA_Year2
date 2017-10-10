@@ -4,20 +4,54 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Ship : MonoBehaviour {
-    public enum ShipType { Player, mob, miniBoss, Boss}
+    public enum ShipType { Player, mob, miniBoss, Boss }
 
     public ShipType shipType;
     public List<WeaponBehavior> weapons;
     public Vector3 velocity;
-    [Range (0,1)]public float drag;
+    [Range(0, 1)] public float drag;
     public float thrusterPower = 0;
     public float componentHealth = 100;
     public float fullHealth;
     public float currentHealth;
-    public float displayHealth;
+
+    [Header("Econmy related vars")]
+    public float resources = 0;
+    public GameObject resourcesPrefab;
+    
 
     [Header("UI related stuff(do not edit)")]
     public Image healthBar;
+    private float dispHP;
+    private float goalDispHP;
+    public Text resourcesText;
+
+    public float _goalDispHP
+    {
+        get
+        {
+            return goalDispHP;
+        }
+
+        set
+        {
+            goalDispHP = value;
+        }
+    }
+
+    public float _dispHP
+    {
+        get
+        {
+            return dispHP;
+        }
+
+        set
+        {
+            dispHP = value;
+            healthBar.fillAmount = dispHP;
+        }
+    }
 
     public float _currentHealth
     {
@@ -29,8 +63,7 @@ public class Ship : MonoBehaviour {
         set
         {
             currentHealth = value;
-            displayHealth = currentHealth / fullHealth;
-            healthBar.fillAmount = displayHealth;
+            _goalDispHP = currentHealth / fullHealth;
         }
     }
 
@@ -56,9 +89,20 @@ public class Ship : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if(_dispHP != _goalDispHP)
+        {
+            if (Mathf.Abs(_dispHP - _goalDispHP) < 1)
+            {
+                _dispHP = Mathf.Lerp(_dispHP, _goalDispHP, 10f * Time.fixedDeltaTime);
+            }
+            else
+            {
+                _dispHP = _goalDispHP;
+            }
+        }
         if(_currentHealth <= 0)
         {
-            DestroyObject(this.transform.parent.gameObject);
+            DestroySelf();
         }
         this.transform.position += velocity * Time.deltaTime;
         if (velocity.sqrMagnitude != 0)
@@ -66,7 +110,29 @@ public class Ship : MonoBehaviour {
             velocity *= drag;
             
         }
+
 	}
+
+    private void DestroySelf()
+    {
+        for(float i = this.resources; i > 0; i -= 10)
+        {
+            var scrap = Instantiate(resourcesPrefab, this.transform.position, Quaternion.identity);
+            var direction = new Vector3(Random.Range(-20, 20), 0, Random.Range(-20, 20));
+            scrap.GetComponent<Rigidbody>().AddForce(direction * 25);
+        }
+        DestroyObject(this.transform.parent.gameObject);
+    }
+
+    public void CollectScrap(float value)
+    {
+        Debug.Log("called with " + value);
+        this.resources += value;
+        if (shipType == ShipType.Player)
+        {
+            resourcesText.text = "Scrap: " + this.resources;
+        }
+    }
 
     public void InputVelocity(Vector3 input)
     {

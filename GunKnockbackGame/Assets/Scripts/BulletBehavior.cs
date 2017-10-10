@@ -6,6 +6,7 @@ public class BulletBehavior : MonoBehaviour {
     [SerializeField] public float velocity;
     [SerializeField] public float damage = 20;
     [SerializeField] public WeaponBehavior creator;
+    [SerializeField] private GameObject explosionPrefab;
 
     [SerializeField] public LayerMask targetMask;
     [SerializeField] private LayerMask wallMask;
@@ -33,16 +34,23 @@ public class BulletBehavior : MonoBehaviour {
                 col = (Ship)targets[0].gameObject.GetComponentInChildren(typeof(Ship));
             }
             col._currentHealth -= this.damage;
-            DestroyObject(this.gameObject);
+            DestroySelf();
         }
 
         Collider[] walls = Physics.OverlapSphere(transform.position, this.transform.localScale.x, wallMask);
         if (walls.Length != 0)
         {
-            DestroyObject(this.gameObject);
+            DestroySelf();
         }
             
         
         this.transform.position += this.transform.forward * frameSpeed;
     }
+
+    private void DestroySelf()
+    {
+        DestroyObject(this.gameObject);
+        Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
+    }
+
 }

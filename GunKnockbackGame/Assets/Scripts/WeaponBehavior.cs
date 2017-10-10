@@ -75,9 +75,7 @@ public class WeaponBehavior : MonoBehaviour {
             timeTillNextAttack = rechargeTime;
             var projectilesToFire =  currentAmmo / ammoCost;
             projectilesToFire = projectileCount;
-            Debug.Log(projectilesToFire);
-            //projectilesToFire = (projectilesToFire < projectileCount) ? projectilesToFire : projectileCount;//make sure we don't create too many
-            Debug.Log(projectilesToFire);
+            projectilesToFire = (projectilesToFire < projectileCount) ? projectilesToFire : projectileCount;//make sure we don't create too many
             for (int i = 0; i < projectilesToFire; i++)
             {
                 float angle = 0;

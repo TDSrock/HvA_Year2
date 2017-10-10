@@ -159,6 +159,7 @@ MonoBehaviour:
   velocity: 0
   damage: 20
   creator: {fileID: 0}
+  explosionPrefab: {fileID: 100004, guid: 82019e923dca94848916b96b8f98a352, type: 2}
   targetMask:
     serializedVersion: 2
     m_Bits: 512
