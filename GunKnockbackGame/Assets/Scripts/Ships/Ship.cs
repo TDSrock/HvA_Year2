@@ -16,7 +16,7 @@ public class Ship : MonoBehaviour {
     public float currentHealth;
 
     [Header("Econmy related vars")]
-    public float resources = 0;
+    [SerializeField] private float resources = 0;
     public GameObject resourcesPrefab;
     
 
@@ -25,6 +25,8 @@ public class Ship : MonoBehaviour {
     private float dispHP;
     private float goalDispHP;
     public Text resourcesText;
+    public GameObject weaponInfoPrefab;
+    public Canvas MainUICanvas;
 
     public float _goalDispHP
     {
@@ -67,6 +69,19 @@ public class Ship : MonoBehaviour {
         }
     }
 
+    public float _resources
+    {
+        get { return this.resources; }
+        set
+        {
+            this.resources = value;
+            if (this.shipType == ShipType.Player)
+            {
+                resourcesText.text = "Scrap: " + this.resources;
+            }
+        }
+    }
+
     // Use this for initialization
     void Start () {
         var weaponsComponents = GetComponentsInChildren(typeof(WeaponBehavior));
@@ -74,6 +89,16 @@ public class Ship : MonoBehaviour {
         for(int i = 0;i < weaponsComponents.Length; i++)
         {
             w[i] = (WeaponBehavior)weaponsComponents[i];
+            if(shipType == ShipType.Player)
+            {
+                //make the player's ship have ui elements
+                var prefab = Instantiate(weaponInfoPrefab, MainUICanvas.transform);
+                var prefabRect = prefab.GetComponent<RectTransform>().rect;
+                prefab.transform.position += new Vector3(0, -i * prefabRect.height, 0);
+
+                w[i].TieToUI(prefab);
+
+            }
         }
         weapons = new List<WeaponBehavior>(w);
         //TODO uncomment code below once ShipParts are implemented
@@ -85,7 +110,9 @@ public class Ship : MonoBehaviour {
         */
         fullHealth += componentHealth;
         _currentHealth = fullHealth;
-	}
+
+        this._resources = resources;
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -126,12 +153,8 @@ public class Ship : MonoBehaviour {
 
     public void CollectScrap(float value)
     {
-        Debug.Log("called with " + value);
-        this.resources += value;
-        if (shipType == ShipType.Player)
-        {
-            resourcesText.text = "Scrap: " + this.resources;
-        }
+        this._resources += value;
+
     }
 
     public void InputVelocity(Vector3 input)

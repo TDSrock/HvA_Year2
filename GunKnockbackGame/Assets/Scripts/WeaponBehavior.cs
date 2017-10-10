@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class WeaponBehavior : MonoBehaviour {
@@ -8,6 +9,7 @@ public class WeaponBehavior : MonoBehaviour {
     [SerializeField] public List<BulletBehavior> activeProjectiles = new List<BulletBehavior>();
 
     //normal shooting vars
+    [Header("Shooting variables")]
     [SerializeField] private float rechargeTime = 2f;
     [SerializeField] private float timeTillNextAttack = 0;
     [SerializeField] private bool readyToFire = true;
@@ -19,6 +21,7 @@ public class WeaponBehavior : MonoBehaviour {
     [SerializeField] private BulletBehavior projectile;
     [SerializeField] private LayerMask projectileTargetMask;
 
+    [Header("Ammo and reload variables")]
     //Ammo and reload related vars
     [SerializeField] public double maxAmmo = 30;
     [SerializeField] public double currentAmmo;
@@ -28,8 +31,14 @@ public class WeaponBehavior : MonoBehaviour {
     [SerializeField] public bool bottomlessClip = false;
     [SerializeField] private float ammoCost = 1;//per projectile
     [SerializeField] private bool autoReload = true;
-
     [SerializeField] private float recoil = 3f;
+
+    [Header("UI related variables, set by method")]
+    private bool hasUiElement = false;
+    [SerializeField]
+    private GameObject myUiElement;
+    private string myUiElementText;
+    [Range(0, 1)] private float myUiElementFill;
 
     [SerializeField] public float _arcAngle
     {
@@ -43,7 +52,7 @@ public class WeaponBehavior : MonoBehaviour {
 
     [SerializeField] public bool _enoughAmmo
     {
-        get { return this.currentAmmo > ammoCost; }
+        get { return this.currentAmmo >= ammoCost; }
     }
 
     public void Start()
@@ -63,6 +72,44 @@ public class WeaponBehavior : MonoBehaviour {
         if (reloading)
         {
             this.Reload();
+        }
+        if (hasUiElement)
+        {
+            var textElement = myUiElement.GetComponentInChildren<Text>();
+            textElement.text = "Wpnnm\n";
+            if (bottomlessClip)
+            {
+                textElement.text += "∞";
+            }
+            else
+            {
+                if (!reloading)
+                {
+                    textElement.text += currentAmmo + "/" + maxAmmo;
+                }
+                else
+                {
+                    textElement.text += "reloading";
+                }
+            }
+            var fillElement = myUiElement.GetComponentsInChildren<Image>()[1];
+
+            if (reloading)
+            {
+                fillElement.fillAmount = reloadTimer / reloadTime;
+            }
+            else
+            {
+                if (!readyToFire)
+                {
+                    fillElement.fillAmount = timeTillNextAttack / rechargeTime;
+                    Debug.Log(timeTillNextAttack / rechargeTime);
+                }
+                else
+                {
+                    fillElement.fillAmount = 0;
+                }
+            }
         }
         
     }
@@ -143,5 +190,15 @@ public class WeaponBehavior : MonoBehaviour {
             angleInDegrees += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    public void TieToUI(GameObject myElement)
+    {
+        if (!hasUiElement)
+        {
+            hasUiElement = !hasUiElement;
+            this.myUiElement = myElement;
+        }
+
     }
 }
