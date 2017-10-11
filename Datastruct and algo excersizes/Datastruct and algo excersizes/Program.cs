@@ -29,15 +29,7 @@ namespace Datastruct_and_algo_excersizes
             //setup excersizes to run.
             Dictionary<Excersize, Tuple<int, string[]>> excersizes = new Dictionary<Excersize, Tuple<int, string[]>>
             {
-                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=100", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=200", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=400", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q1(), new Tuple<int, string[]>(10000, new string[] { "words=800", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=100", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=200", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=400", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Q2(), new Tuple<int, string[]>(10000, new string[] { "words=800", "generate", /*"printwords",*/ "numbertagwords" }) },
-                { new Excersize2_Bonus(), new Tuple<int, string[]>(10, new string[] { "words=100", "generate", "printwords", "numbertagwords" }) }
+                { new Excersize3_Q3(), new Tuple<int, string[]>(1, new string[] { "n=100" }) }
             };
             List<string> testResults = new List<string>();
 
@@ -88,6 +80,9 @@ namespace Datastruct_and_algo_excersizes
                 "\r\n{2,7} printAllResultsAtEnd", printTestResultsDuring, printExcersizeResultsDuring, printAllResultsAtEnd));
             Console.WriteLine("press enter key to close");
             Console.ReadLine();
+
+            Console.ReadLine();
+
         }
 
         public static string StringArrayToString(string[] s)

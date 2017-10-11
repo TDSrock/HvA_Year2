@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Datastruct_and_algo_excersizes
 {
-    class State<T>
+    abstract class State<T> : StateInterface<T>
     {
         public List<State<T>> exitStates;
         private string stateName;
@@ -18,22 +18,22 @@ namespace Datastruct_and_algo_excersizes
 
         public State(string name)
         {
+            this.exitStates = new List<State<T>>();
             this.stateName = name;
         }
 
-        public virtual bool evaluateWorld(T agent, out State<T> changeStateToo)
+        public virtual bool EvaluateAgent(T agent, out State<T> changeStateToo)
         {
             changeStateToo = null;
             return false;
-
         }
 
-        public virtual void OnExitState()
+        public virtual void OnExitState(State<T> nextState)
         {
 
         }
 
-        public virtual void OnEnterState()
+        public virtual void OnEnterState(State<T> prevState)
         {
 
         }

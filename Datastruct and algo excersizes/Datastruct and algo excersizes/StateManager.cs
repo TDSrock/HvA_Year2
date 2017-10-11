@@ -12,10 +12,13 @@ namespace Datastruct_and_algo_excersizes
         State<T> startState;
         State<T> currentState;
         T agent;
-        bool isValidStateMachine = false; 
+        bool isValidStateMachine = false;
+
+        internal State<T> _currentState { get => currentState; }
 
         public StateManager(T agent)
         {
+            myStates = new Dictionary<State<T>, string>();
             this.agent = agent;
         }
 
@@ -23,7 +26,8 @@ namespace Datastruct_and_algo_excersizes
         {
             if(isValidStateMachine)
             {
-                Console.WriteLine("State machine has already been validated and may not be edited anymore");
+                Console.WriteLine("State machine has already been validated and may not be edited anymore\n" +
+                    "If intended please disable the stateMachine first");
                 return false;
             }
             if(myStates.ContainsKey(newState))
@@ -32,24 +36,27 @@ namespace Datastruct_and_algo_excersizes
             }
             try {
                 myStates.Add(newState, newState._stateName);
-                this.startState = newState;
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
                 return false;
             }
+            if (isStartState)
+            {
+                startState = newState;
+            }
             return true;
         }
 
-        public void ExecuteState()
+        public void ExecuteCurrentState()
         {
-            if(isValidStateMachine)
+            if(!isValidStateMachine)
             {
                 Console.WriteLine("State machine has not been validated yet. Did you forget to validate the statemachine?");
                 return;
             }
-            State<T> changeState;
-            if(this.currentState.evaluateWorld(this.agent ,out changeState))
+            if (this.currentState.EvaluateAgent(this.agent, out State<T> changeState))
             {
                 this.ChangeState(changeState);
             }
@@ -60,12 +67,14 @@ namespace Datastruct_and_algo_excersizes
 
         }
 
-        private void ChangeState(State<T> stateToChangeToo)
+        public void ChangeState(State<T> stateToChangeToo)
         {
-            currentState.OnExitState();
+            var prevState = currentState;
+            currentState.OnExitState(stateToChangeToo);
             currentState = stateToChangeToo;
-            currentState.OnEnterState();
+            currentState.OnEnterState(prevState);
         }
+
 
         public List<State<T>> GetAllStates()
         {
@@ -80,16 +89,19 @@ namespace Datastruct_and_algo_excersizes
         public List<State<T>> GetUnreachableStates(State<T> StartState)
         {
             List<State<T>> unreachableStates = GetAllStates();
-            List<State<T>> discoveredStates = new List<State<T>>();
 
-            if(!unreachableStates.Contains(StartState))
+            List<State<T>> discoveredStates = new List<State<T>>
+            {
+                StartState
+            };
+            if (!unreachableStates.Contains(StartState))
             {
                 throw new StateNotIncludedException("The state " + StartState + " is not a part of this StateManager");
             }
             unreachableStates.Remove(StartState);
-            discoveredStates.Add(StartState);
 
-            while(discoveredStates.Count != 0)
+
+            while (discoveredStates.Count != 0)
             {
                 State<T> investigatingState = discoveredStates[0];//get a state we know off
                 discoveredStates.Remove(investigatingState);
@@ -109,12 +121,15 @@ namespace Datastruct_and_algo_excersizes
 
         public List<State<T>> GetReachableStates(State<T> startState)
         {
-            List<State<T>> reachedStates = new List<State<T>>();
-            reachedStates.Add(startState);
-            List<State<T>> discoveredStates = new List<State<T>>();
-            discoveredStates.Add(startState);
-
-            while(discoveredStates.Count != 0)
+            List<State<T>> reachedStates = new List<State<T>>
+            {
+                startState
+            };
+            List<State<T>> discoveredStates = new List<State<T>>
+            {
+                startState
+            };
+            while (discoveredStates.Count != 0)
             {
                 State<T> investigatingState = discoveredStates[0];//get a state we know off
                 discoveredStates.Remove(investigatingState);
@@ -162,6 +177,7 @@ namespace Datastruct_and_algo_excersizes
 
             if(this.AreAllStatesReachable())
             {
+                this.currentState = this.startState;
                 this.isValidStateMachine = true;
             }
             return this.isValidStateMachine;
