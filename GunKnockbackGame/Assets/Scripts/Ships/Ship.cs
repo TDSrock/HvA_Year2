@@ -148,6 +148,8 @@ public class Ship : MonoBehaviour {
             var direction = new Vector3(Random.Range(-20, 20), 0, Random.Range(-20, 20));
             scrap.GetComponent<Rigidbody>().AddForce(direction * 25);
         }
+		if(shipType == ShipType.Player)
+			_dispHP = 0;
         DestroyObject(this.transform.parent.gameObject);
     }
 

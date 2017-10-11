@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Datastruct_and_algo_excersizes
 {
-    class State
+    class State<T>
     {
-        public List<State> exitStates;
+        public List<State<T>> exitStates;
         private string stateName;
 
         public string _stateName
@@ -21,22 +21,24 @@ namespace Datastruct_and_algo_excersizes
             this.stateName = name;
         }
 
-        public void evalState()
+        public virtual bool evaluateWorld(T agent, out State<T> changeStateToo)
+        {
+            changeStateToo = null;
+            return false;
+
+        }
+
+        public virtual void OnExitState()
         {
 
         }
 
-        public void OnExitState()
+        public virtual void OnEnterState()
         {
 
         }
 
-        public void OnEnterState()
-        {
-
-        }
-
-        public void OnStayInState()
+        public virtual void OnStayInState()
         {
 
         }
