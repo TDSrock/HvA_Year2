@@ -14,7 +14,7 @@ namespace Datastruct_and_algo_excersizes
         T agent;
         bool isValidStateMachine = false;
 
-        internal State<T> _currentState { get => currentState; }
+        internal State<T> _currentState { get { return currentState; } }
 
         public StateManager(T agent)
         {
@@ -56,7 +56,8 @@ namespace Datastruct_and_algo_excersizes
                 Console.WriteLine("State machine has not been validated yet. Did you forget to validate the statemachine?");
                 return;
             }
-            if (this.currentState.EvaluateAgent(this.agent, out State<T> changeState))
+            State<T> changeState;
+            if (this.currentState.EvaluateAgent(this.agent, out changeState))
             {
                 this.ChangeState(changeState);
             }

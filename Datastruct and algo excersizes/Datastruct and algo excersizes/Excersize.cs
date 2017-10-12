@@ -17,8 +17,8 @@ namespace Datastruct_and_algo_excersizes
 
         }
 
-        public int _n { get => n; set => n = value; }
-        public int _words { get => words; set => words = value; }
+        public int _n { get { return n; } set { n = value; } }
+        public int _words { get { return words; } set { words = value; } }
 
         //override this method and construct the class's data set within it.
         virtual public void ConstructData(string[] paramArgs = null)
