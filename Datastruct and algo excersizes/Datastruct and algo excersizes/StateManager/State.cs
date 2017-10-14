@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datastruct_and_algo_excersizes
+namespace Datastruct_and_algo_excersizes.StateMananger
 {
     abstract class State<T> : StateInterface<T>
     {

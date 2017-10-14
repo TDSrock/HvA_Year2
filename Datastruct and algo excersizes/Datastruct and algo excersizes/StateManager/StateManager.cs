@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datastruct_and_algo_excersizes
+namespace Datastruct_and_algo_excersizes.StateMananger
 {
-    class StateManager<T>
+    class StateManager<T> : StateManagerInterface<T>
     {
-        Dictionary<State<T>, string> myStates;
+        Dictionary<string, State<T>> myStates;
         State<T> startState;
         State<T> currentState;
         T agent;
@@ -18,7 +18,7 @@ namespace Datastruct_and_algo_excersizes
 
         public StateManager(T agent)
         {
-            myStates = new Dictionary<State<T>, string>();
+            myStates = new Dictionary<string, State<T>>();
             this.agent = agent;
         }
 
@@ -26,22 +26,27 @@ namespace Datastruct_and_algo_excersizes
         {
             if(isValidStateMachine)
             {
-                Console.WriteLine("State machine has already been validated and may not be edited anymore\n" +
+                throw new StateManagerAlreadyActiveException("State machine has already been validated and may not be edited anymore, " +
                     "If intended please disable the stateMachine first");
-                return false;
             }
-            if(myStates.ContainsKey(newState))
+
+            if(myStates.ContainsKey(newState._stateName))
             {
                 return false;
             }
+
             try {
-                myStates.Add(newState, newState._stateName);
+                myStates.Add(newState._stateName, newState);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
-                Console.WriteLine(e.StackTrace);
-                return false;
+                throw new ArgumentNullException(e.StackTrace);
             }
+            catch (ArgumentException e)
+            {
+                throw new ArgumentException(e.StackTrace);
+            }
+
             if (isStartState)
             {
                 startState = newState;
@@ -53,9 +58,9 @@ namespace Datastruct_and_algo_excersizes
         {
             if(!isValidStateMachine)
             {
-                Console.WriteLine("State machine has not been validated yet. Did you forget to validate the statemachine?");
-                return;
+                throw new StateManagerNotValidatedException("State machine has not been validated yet. Did you forget to validate the statemachine?");
             }
+
             State<T> changeState;
             if (this.currentState.EvaluateAgent(this.agent, out changeState))
             {
@@ -80,9 +85,9 @@ namespace Datastruct_and_algo_excersizes
         public List<State<T>> GetAllStates()
         {
             List<State<T>> allStates = new List<State<T>>();
-            foreach(KeyValuePair<State<T>, string> keyValuePair in myStates)
+            foreach(KeyValuePair<string, State<T>> keyValuePair in myStates)
             {
-                allStates.Add(keyValuePair.Key);
+                allStates.Add(keyValuePair.Value);
             }
             return allStates;
         }
@@ -149,22 +154,30 @@ namespace Datastruct_and_algo_excersizes
         public List<State<T>> GetEndStates()
         {
             List<State<T>> endStates = new List<State<T>>();
-            foreach(KeyValuePair<State<T>, string> stateNamePair in myStates)
+            foreach(KeyValuePair<string, State<T>> stateNamePair in myStates)
             {
-                if(stateNamePair.Key.exitStates.Count == 0)
+                if(stateNamePair.Value.exitStates.Count == 0)
                 {
-                    endStates.Add(stateNamePair.Key);
+                    endStates.Add(stateNamePair.Value);
                 }
             }
             return endStates;
         }
 
-        public bool AreAllReachableStatesInStateMachine()
+        private bool AreAllReachableStatesInStateMachine()
         {
-            return GetReachableStates(this.startState).Count < 1;
+            List<State<T>> reachableStates = GetReachableStates(this.startState);
+            foreach(State<T> reachableState in reachableStates)
+            {
+                if (!this.myStates.ContainsKey(reachableState._stateName))//if any reachable state doesn't exsist in the dictionary, return false.
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
-        public bool AreAllStatesReachable()
+        private bool AreAllStatesReachable()
         {
             return GetUnreachableStates(this.startState).Count < 1;
         }
@@ -176,7 +189,7 @@ namespace Datastruct_and_algo_excersizes
                 return this.isValidStateMachine;
             }
 
-            if(this.AreAllStatesReachable())
+            if(this.AreAllStatesReachable() && this.AreAllReachableStatesInStateMachine())
             {
                 this.currentState = this.startState;
                 this.isValidStateMachine = true;
@@ -192,24 +205,5 @@ namespace Datastruct_and_algo_excersizes
         }
 
        
-    }
-
-    public class StateNotIncludedException : Exception
-    {
-        private string _message;
-
-        public StateNotIncludedException(string message)
-        {
-            
-            this._message = message;
-        }
-
-        public override string Message
-        {
-            get
-            {
-                return this._message;
-            }
-        }
     }
 }

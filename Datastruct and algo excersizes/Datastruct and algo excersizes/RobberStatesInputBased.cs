@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datastruct_and_algo_excersizes
+namespace Datastruct_and_algo_excersizes.StateMananger
 {
     /* A quick place to grab a new state easily cuse I am lazy
     class InputRobbinBankState<Robber> : State<Robber>, StateInterface<Robber>

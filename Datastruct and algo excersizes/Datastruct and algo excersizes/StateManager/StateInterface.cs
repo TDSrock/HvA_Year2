@@ -1,4 +1,4 @@
-﻿namespace Datastruct_and_algo_excersizes
+﻿namespace Datastruct_and_algo_excersizes.StateMananger
 {
     interface StateInterface<T>
     {

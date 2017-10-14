@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datastruct_and_algo_excersizes.StateMananger;
 
 namespace Datastruct_and_algo_excersizes
 {
@@ -40,16 +41,12 @@ namespace Datastruct_and_algo_excersizes
             myStateMachine.AddState(fleeingState);
             myStateMachine.AddState(goodTimeState);
             myStateMachine.AddState(layingLowState);
-            myStateMachine.AddState(robbingBankState, true);
+            myStateMachine.AddState(robbingBankState, true);//this is our starting state, so pass true for the optional paramater
             try
             {
-                if (myStateMachine.EnableStateMachine())
+                if (!myStateMachine.EnableStateMachine())
                 {
-                    Console.WriteLine("cool");
-                }
-                else
-                {
-                    Console.WriteLine("ahh nuts");
+                    Console.WriteLine("State machine failed to enalbe");
                 }
             }
             catch (StateNotIncludedException e)
