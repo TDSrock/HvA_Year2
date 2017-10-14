@@ -37,6 +37,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
         /*
          * Execute the current state's logic via it's EvalueteAgent method
          * If Evaluate Agent returns true the currentState of the StateManager will change via the ChangeState method
+         * Note: If a state change is enacted the currentState when the method is called will NOT execute it's RemainInState method.
          * Can throw StateManagerNotValidatedException
          */
         void ExecuteCurrentState();

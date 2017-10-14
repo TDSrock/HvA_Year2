@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Datastruct_and_algo_excersizes.StateMananger
 {
+    /* Improvements:
+     * Alter the state class to no longer require instance of T
+     * and exitStates
+     */
     abstract class State<T> : StateInterface<T>
     {
         public List<State<T>> exitStates;

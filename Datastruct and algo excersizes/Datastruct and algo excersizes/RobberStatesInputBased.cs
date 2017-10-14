@@ -3,39 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datastruct_and_algo_excersizes.StateMananger;
 
-namespace Datastruct_and_algo_excersizes.StateMananger
+namespace Datastruct_and_algo_excersizes
 {
-    /* A quick place to grab a new state easily cuse I am lazy
-    class InputRobbinBankState<Robber> : State<Robber>, StateInterface<Robber>
-        where Robber : Datastruct_and_algo_excersizes.Robber
-    {
-        public InputRobbinBankState() : base("RobbinBank")
-        {
-
-        }
-
-        public override  bool EvaluateAgent(Robber agent, out State<Robber> changeStateToo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnEnterState(State<Robber> prevState)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnExitState(State<Robber> nextState)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override  void OnStayInState()
-        {
-            throw new NotImplementedException();
-        }
-    }*/
-
     class InputRobbinBankState<Robber> : State<Robber>, StateInterface<Robber>
         where Robber : Datastruct_and_algo_excersizes.InputRobber
     {
@@ -191,7 +162,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
                     return true;
                 }
             }
-            Console.WriteLine("Error: input fell through, something went wrong in the statemanager debug info:\n" +
+            Console.WriteLine("Error: input fell through, something went wrong in the statemanager, debug info:\n" +
                 "{0} State, {1} agentString", this, agent.agentString);
             return false;
         }

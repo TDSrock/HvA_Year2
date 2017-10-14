@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Datastruct_and_algo_excersizes.StateMananger
 {
+
+    /* Improvements:
+     * Alter the StateMananger to evaluate the agents variables and then dictate state changes.
+     * Every evaluation a stateChange should occur
+     * Keep track of which state can lead into which within the mananger
+     */
     class StateManager<T> : StateManagerInterface<T>
     {
         Dictionary<string, State<T>> myStates;
@@ -35,17 +41,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
                 return false;
             }
 
-            try {
-                myStates.Add(newState._stateName, newState);
-            }
-            catch (ArgumentNullException e)
-            {
-                throw new ArgumentNullException(e.StackTrace);
-            }
-            catch (ArgumentException e)
-            {
-                throw new ArgumentException(e.StackTrace);
-            }
+             myStates.Add(newState._stateName, newState);
 
             if (isStartState)
             {

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomatedRobber.cs" />
     <Compile Include="Excersize.cs" />
     <Compile Include="Excersize1_Q3.cs" />
     <Compile Include="Excersize2_Bonus.cs" />
