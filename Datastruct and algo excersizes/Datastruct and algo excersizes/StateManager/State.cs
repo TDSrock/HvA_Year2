@@ -42,7 +42,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
 
         }
 
-        public virtual void OnStayInState()
+        public virtual void OnStayInState(T agent)
         {
 
         }

@@ -45,7 +45,7 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint robbin no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("I'm still robbin");
         }
@@ -89,7 +89,7 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint runnin no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("Gotta go fast");
         }
@@ -133,7 +133,7 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint havin a good time no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("Keep the good times goin!");
         }
@@ -177,7 +177,7 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint chillin no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("Ima chill a bit longer");
         }

@@ -26,7 +26,8 @@
 
         /*
          * Called if no state transsition occurs on this evaluation
+         * Passes in the agent so it may be modified.
          */
-        void OnStayInState();
+        void OnStayInState(T agent);
     }
 }

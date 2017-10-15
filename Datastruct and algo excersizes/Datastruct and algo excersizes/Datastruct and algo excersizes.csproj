@@ -50,6 +50,7 @@
     <Compile Include="Excersize2_Q1.cs" />
     <Compile Include="Excersize2_Q2.cs" />
     <Compile Include="Excersize3_Q3.cs" />
+    <Compile Include="Excersize3_Q5.cs" />
     <Compile Include="Excersize_1.cs" />
     <Compile Include="InputRobber.cs" />
     <Compile Include="Program.cs" />

@@ -77,10 +77,27 @@ namespace Datastruct_and_algo_excersizes
             get { return this.wealth > 9; }
         }
 
+        public bool _notTired
+        {
+            get { return this.strength > 7; }
+        }
+
+        public bool _stillRich
+        {
+            get { return this.wealth >= 3; }
+        }
+
+        public bool _tired
+        {
+            get { return this.strength < 0; }
+        }
+
         public void EvaluateStateMachine()
         {
             this.myStateMachine.ExecuteCurrentState();
         }
+
+
     }
 
     //Becuase I am lazy I am just going to toss these states here. Lazyness ftw
@@ -119,9 +136,17 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint robbin no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("I'm still robbin");
+            agent.strength -= 1;
+            agent.feelSafe -= 1;
+            agent.wealth += 1;
+            Random r = new Random(Guid.NewGuid().GetHashCode());
+            if(r.Next(100) > 25)
+            {
+                agent.distanceToCop = 0;
+            }
         }
     }
 
@@ -137,6 +162,22 @@ namespace Datastruct_and_algo_excersizes
         {
             changeStateToo = null;
 
+            if (agent._tired)
+            {
+                changeStateToo = this.exitStates["LayingLow"];
+                return true;
+            }
+            if(agent._lostCop && agent._feelSafe
+            && agent._notTired && agent._stillRich)
+            {
+                changeStateToo = this.exitStates["HavingGoodTime"];
+                return true;
+            }
+            if(agent._lostCop && agent._feelSafe)
+            {
+                changeStateToo = this.exitStates["RobbinBank"];
+                return true;
+            }
             return false;
         }
 
@@ -150,9 +191,12 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint runnin no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("Gotta go fast");
+            agent.strength -= 1;
+            agent.distanceToCop += 5;
+            agent.feelSafe -= 1;
         }
     }
 
@@ -167,7 +211,16 @@ namespace Datastruct_and_algo_excersizes
         public override bool EvaluateAgent(Robber agent, out State<Robber> changeStateToo)
         {
             changeStateToo = null;
-
+            if (agent._spotCop)
+            {
+                changeStateToo = this.exitStates["Fleeing"];
+                return true;
+            }
+            if (agent._tired)
+            {
+                changeStateToo = this.exitStates["LayingLow"];
+                return true;
+            }
             return false;
         }
 
@@ -181,9 +234,16 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint havin a good time no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("Keep the good times goin!");
+            agent.strength -= 1;
+            agent.wealth -= 1;
+            Random r = new Random(Guid.NewGuid().GetHashCode());
+            if (r.Next(100) > 25)
+            {
+                agent.distanceToCop = 0;
+            }
         }
     }
 
@@ -198,7 +258,16 @@ namespace Datastruct_and_algo_excersizes
         public override bool EvaluateAgent(Robber agent, out State<Robber> changeStateToo)
         {
             changeStateToo = null;
-
+            if(agent._feelSafe && !agent._isRich && agent._notTired)
+            {
+                changeStateToo = this.exitStates["RobbinBank"];
+                return true;
+            }
+            if(agent._stillRich && agent._feelSafe && agent._notTired)
+            {
+                changeStateToo = this.exitStates["HavingGoodTime"];
+                return true;
+            }
             return false;
         }
 
@@ -212,9 +281,11 @@ namespace Datastruct_and_algo_excersizes
             Console.WriteLine("I aint chillin no more");
         }
 
-        public override void OnStayInState()
+        public override void OnStayInState(Robber agent)
         {
             Console.WriteLine("Ima chill a bit longer");
+            agent.strength += 3;
+            agent.feelSafe += 2;
         }
     }
 }

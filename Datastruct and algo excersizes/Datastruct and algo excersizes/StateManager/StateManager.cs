@@ -64,7 +64,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             }
             else
             {
-                currentState.OnStayInState();
+                currentState.OnStayInState(this.agent);
             }
 
         }

@@ -29,7 +29,7 @@ namespace Datastruct_and_algo_excersizes
             //setup excersizes to run.
             Dictionary<Excersize, Tuple<int, string[]>> excersizes = new Dictionary<Excersize, Tuple<int, string[]>>
             {
-                { new Excersize3_Q3(), new Tuple<int, string[]>(1, new string[] { "n=100" }) }
+                { new Excersize3_Q5(), new Tuple<int, string[]>(1, new string[] { "n=1000" }) }
             };
             List<string> testResults = new List<string>();
 
