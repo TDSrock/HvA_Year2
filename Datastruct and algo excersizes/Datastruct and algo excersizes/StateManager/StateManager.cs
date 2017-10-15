@@ -18,7 +18,11 @@ namespace Datastruct_and_algo_excersizes.StateMananger
         State<T> startState;
         State<T> currentState;
         T agent;
+        private List<State<T>> endStates;
+        private bool isInEndState;
         bool isValidStateMachine = false;
+
+        public bool _isInEndState {  get { return isInEndState; } }
 
         internal State<T> _currentState { get { return currentState; } }
 
@@ -64,6 +68,8 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             }
             else
             {
+                if(!this.isInEndState)//once we know we are in an endState we won't be able to move out of it anyway
+                    this.isInEndState = this.endStates.Contains(currentState);
                 currentState.OnStayInState(this.agent);
             }
 
@@ -188,6 +194,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             if(this.AreAllStatesReachable() && this.AreAllReachableStatesInStateMachine())
             {
                 this.currentState = this.startState;
+                this.endStates = GetEndStates();//cache the result in a list so we don't need to run this expensive method over and over again.
                 this.isValidStateMachine = true;
             }
             return this.isValidStateMachine;

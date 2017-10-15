@@ -5,6 +5,11 @@ namespace Datastruct_and_algo_excersizes.StateMananger
     interface StateManagerInterface<T>
     {
         /* 
+         * Whether or not the stateMachine has reached an end-state state
+         */ 
+        bool _isInEndState { get ; }
+
+        /* 
          * Add a state into the state machine, required for validating the state machine.
          * Returns true if adding was succesfull
          * Returns false if the state._stateName already exsists in the state machine

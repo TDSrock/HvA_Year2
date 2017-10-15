@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomatedCop.cs" />
     <Compile Include="AutomatedRobber.cs" />
     <Compile Include="Excersize.cs" />
     <Compile Include="Excersize1_Q3.cs" />
@@ -51,12 +52,14 @@
     <Compile Include="Excersize2_Q2.cs" />
     <Compile Include="Excersize3_Q3.cs" />
     <Compile Include="Excersize3_Q5.cs" />
+    <Compile Include="Excersize3_Q7.cs" />
     <Compile Include="Excersize_1.cs" />
     <Compile Include="InputRobber.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RobberStatesInputBased.cs" />
     <Compile Include="StackQueue.cs" />
+    <Compile Include="CapturableAutomatedRobber.cs" />
     <Compile Include="StateManager\State.cs" />
     <Compile Include="StateManager\StateInterface.cs" />
     <Compile Include="StateManager\StateManager.cs" />
