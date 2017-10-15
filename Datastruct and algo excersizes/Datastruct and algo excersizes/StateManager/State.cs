@@ -12,7 +12,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
      */
     abstract class State<T> : StateInterface<T>
     {
-        public List<State<T>> exitStates;
+        public Dictionary<string, State<T>> exitStates;
         private string stateName;
 
         public string _stateName
@@ -22,7 +22,7 @@ namespace Datastruct_and_algo_excersizes.StateMananger
 
         public State(string name)
         {
-            this.exitStates = new List<State<T>>();
+            this.exitStates = new Dictionary<string, State<T>>();
             this.stateName = name;
         }
 
@@ -45,6 +45,10 @@ namespace Datastruct_and_algo_excersizes.StateMananger
         public virtual void OnStayInState()
         {
 
+        }
+        public void AddExitState(State<T> stateToAdd)
+        {
+            this.exitStates.Add(stateToAdd._stateName, stateToAdd);
         }
 
     }

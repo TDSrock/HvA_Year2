@@ -107,12 +107,12 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             {
                 State<T> investigatingState = discoveredStates[0];//get a state we know off
                 discoveredStates.Remove(investigatingState);
-                foreach(State<T> foundState in investigatingState.exitStates)
+                foreach(KeyValuePair<string, State<T>> foundState in investigatingState.exitStates)
                 {
-                    if(unreachableStates.Contains(foundState))//if the state found is still considered unreachable
+                    if(unreachableStates.Contains(foundState.Value))//if the state found is still considered unreachable
                     {
-                        unreachableStates.Remove(foundState);//make it no longer unreachalble
-                        discoveredStates.Add(foundState);//and add it too the discovered states
+                        unreachableStates.Remove(foundState.Value);//make it no longer unreachalble
+                        discoveredStates.Add(foundState.Value);//and add it too the discovered states
                     }
                 }
             }
@@ -135,12 +135,12 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             {
                 State<T> investigatingState = discoveredStates[0];//get a state we know off
                 discoveredStates.Remove(investigatingState);
-                foreach(State<T> foundState in investigatingState.exitStates)
+                foreach(KeyValuePair<string,State<T>> foundState in investigatingState.exitStates)
                 {
-                    if(!reachedStates.Contains(foundState))//if the state is not in the reached states yet
+                    if(!reachedStates.Contains(foundState.Value))//if the state is not in the reached states yet
                     {
-                        reachedStates.Add(foundState);//Add it too the reached states
-                        discoveredStates.Add(foundState);//and add it too the discovered states
+                        reachedStates.Add(foundState.Value);//Add it too the reached states
+                        discoveredStates.Add(foundState.Value);//and add it too the discovered states
                     }
                 }
             }

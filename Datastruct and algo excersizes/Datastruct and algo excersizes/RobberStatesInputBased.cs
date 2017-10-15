@@ -22,11 +22,11 @@ namespace Datastruct_and_algo_excersizes
             {
                 return false;
             }
-            foreach(State<Robber> state in this.exitStates)
+            foreach(KeyValuePair<string, State<Robber>> state in this.exitStates)
             {
-                if (state._stateName.Equals(agent.agentString))
+                if (state.Value._stateName.Equals(agent.agentString))
                 {
-                    changeStateToo = state;
+                    changeStateToo = state.Value;
                     return true;
                 }
             }
@@ -66,11 +66,11 @@ namespace Datastruct_and_algo_excersizes
             {
                 return false;
             }
-            foreach (State<Robber> state in this.exitStates)
+            foreach (KeyValuePair<string, State<Robber>> state in this.exitStates)
             {
-                if (state._stateName.Equals(agent.agentString))
+                if (state.Value._stateName.Equals(agent.agentString))
                 {
-                    changeStateToo = state;
+                    changeStateToo = state.Value;
                     return true;
                 }
             }
@@ -110,11 +110,11 @@ namespace Datastruct_and_algo_excersizes
             {
                 return false;
             }
-            foreach (State<Robber> state in this.exitStates)
+            foreach (KeyValuePair<string, State<Robber>> state in this.exitStates)
             {
-                if (state._stateName.Equals(agent.agentString))
+                if (state.Value._stateName.Equals(agent.agentString))
                 {
-                    changeStateToo = state;
+                    changeStateToo = state.Value;
                     return true;
                 }
             }
@@ -154,11 +154,11 @@ namespace Datastruct_and_algo_excersizes
             {
                 return false;
             }
-            foreach (State<Robber> state in this.exitStates)
+            foreach (KeyValuePair<string, State<Robber>> state in this.exitStates)
             {
-                if (state._stateName.Equals(agent.agentString))
+                if (state.Value._stateName.Equals(agent.agentString))
                 {
-                    changeStateToo = state;
+                    changeStateToo = state.Value;
                     return true;
                 }
             }

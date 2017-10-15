@@ -11,7 +11,7 @@ namespace Datastruct_and_algo_excersizes
     {
         StateManager<AutomatedRobber> myStateMachine;
         //create the agents variables.
-        public float distanceToCop = 10, wealth = 2, strength = 5;
+        public float distanceToCop = 10, wealth = 2, strength = 5, feelSafe = 0;
 
         public AutomatedRobber()
         {
@@ -22,17 +22,17 @@ namespace Datastruct_and_algo_excersizes
             var layingLowState = new AutomatedLayingLowState<AutomatedRobber>();
 
             //connect the states with one another
-            robbingBankState.exitStates.Add(goodTimeState);
-            robbingBankState.exitStates.Add(fleeingState);
-            layingLowState.exitStates.Add(robbingBankState);
-            goodTimeState.exitStates.Add(fleeingState);
-            goodTimeState.exitStates.Add(layingLowState);
-            fleeingState.exitStates.Add(layingLowState);
-            fleeingState.exitStates.Add(robbingBankState);
+            robbingBankState.AddExitState(goodTimeState);
+            robbingBankState.AddExitState(fleeingState);
+            layingLowState.AddExitState(robbingBankState);
+            goodTimeState.AddExitState(fleeingState);
+            goodTimeState.AddExitState(layingLowState);
+            fleeingState.AddExitState(layingLowState);
+            fleeingState.AddExitState(robbingBankState);
 
             //add my new state transitions
-            layingLowState.exitStates.Add(goodTimeState);
-            fleeingState.exitStates.Add(goodTimeState);
+            layingLowState.AddExitState(goodTimeState);
+            fleeingState.AddExitState(goodTimeState);
 
             //add states too the manager
             myStateMachine.AddState(fleeingState);
@@ -50,6 +50,31 @@ namespace Datastruct_and_algo_excersizes
             {
                 Console.WriteLine(e.Message + "\n" + e.StackTrace);
             }
+        }
+
+        public bool _lostCop
+        {
+            get { return this.distanceToCop > 25; }
+        }
+
+        public bool _feelSafe
+        {
+            get { return this.feelSafe > 3;  }
+        }
+
+        public bool _spotCop
+        {
+            get { return this.distanceToCop == 0; }
+        }
+
+        public bool _isRich
+        {
+            get { return this.wealth > 2; }
+        }
+
+        public bool _gotRich
+        {
+            get { return this.wealth > 9; }
         }
 
         public void EvaluateStateMachine()
@@ -71,7 +96,16 @@ namespace Datastruct_and_algo_excersizes
         public override bool EvaluateAgent(Robber agent, out State<Robber> changeStateToo)
         {
             changeStateToo = null;
-
+            if (agent._gotRich)
+            {
+                changeStateToo = this.exitStates["HavingGoodTime"];
+                return true;
+            }
+            if (agent._spotCop)
+            {
+                changeStateToo = this.exitStates["Fleeing"];
+                return true;
+            }
             return false;
         }
 

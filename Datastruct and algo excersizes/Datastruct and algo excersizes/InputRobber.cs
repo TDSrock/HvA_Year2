@@ -25,17 +25,17 @@ namespace Datastruct_and_algo_excersizes
             var layingLowState = new InputLayingLowState<InputRobber>();
 
             //connect the states with one another
-            robbingBankState.exitStates.Add(goodTimeState);
-            robbingBankState.exitStates.Add(fleeingState);
-            layingLowState.exitStates.Add(robbingBankState);
-            goodTimeState.exitStates.Add(fleeingState);
-            goodTimeState.exitStates.Add(layingLowState);
-            fleeingState.exitStates.Add(layingLowState);
-            fleeingState.exitStates.Add(robbingBankState);
+            robbingBankState.AddExitState(goodTimeState);
+            robbingBankState.AddExitState(fleeingState);
+            layingLowState.AddExitState(robbingBankState);
+            goodTimeState.AddExitState(fleeingState);
+            goodTimeState.AddExitState(layingLowState);
+            fleeingState.AddExitState(layingLowState);
+            fleeingState.AddExitState(robbingBankState);
 
             //add my new state transitions
-            layingLowState.exitStates.Add(goodTimeState);
-            fleeingState.exitStates.Add(goodTimeState);
+            layingLowState.AddExitState(goodTimeState);
+            fleeingState.AddExitState(goodTimeState);
 
             //add states too the manager
             myStateMachine.AddState(fleeingState);
@@ -60,9 +60,9 @@ namespace Datastruct_and_algo_excersizes
             string[] options = new string[myStateMachine._currentState.exitStates.Count + 1];
             {
                 int i = 0;
-                foreach (State<InputRobber> state in myStateMachine._currentState.exitStates)
+                foreach (KeyValuePair<string, State<InputRobber>> state in myStateMachine._currentState.exitStates)
                 {
-                    options[i++] = state._stateName;
+                    options[i++] = state.Value._stateName;
                 }
                 options[i] = "Do nothing";
             }//we no longer need the i value so toss it.
