@@ -32,20 +32,12 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             return false;
         }
 
-        public virtual void OnExitState(State<T> nextState)
-        {
+        public abstract void OnExitState(State<T> nextState);
 
-        }
+        public abstract void OnEnterState(State<T> prevState);
 
-        public virtual void OnEnterState(State<T> prevState)
-        {
+        public abstract void OnStayInState(T agent);
 
-        }
-
-        public virtual void OnStayInState(T agent)
-        {
-
-        }
         public void AddExitState(State<T> stateToAdd)
         {
             this.exitStates.Add(stateToAdd._stateName, stateToAdd);
