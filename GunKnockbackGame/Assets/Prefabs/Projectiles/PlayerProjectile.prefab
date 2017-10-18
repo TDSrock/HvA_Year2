@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4429261521678288}
   - component: {fileID: 33128275948977306}
-  - component: {fileID: 135276588930499270}
   - component: {fileID: 23956662083962434}
   - component: {fileID: 114976779782953244}
   - component: {fileID: 108496424477151418}
@@ -167,15 +166,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   debug: {x: 0, y: 0, z: 0}
---- !u!135 &135276588930499270
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1497143620169204}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

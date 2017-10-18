@@ -6,7 +6,6 @@ public class ScrapBehavior : MonoBehaviour {
 
     public float pullEffectWeight = 5f;
     float value = 10f;
-    List<Ship> pulledTowardsList;
     Rigidbody rb;
     bool collected = false;
 
@@ -14,7 +13,6 @@ public class ScrapBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-        pulledTowardsList = new List<Ship>();
 	}
 	
 	// Update is called once per frame

@@ -1539,6 +1539,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 437101cbddfdc4c45bd7f60cf78f8e82, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1572836668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1572836669}
+  m_Layer: 0
+  m_Name: GameManagement object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1572836669
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1572836668}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663614982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1671,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollowObject: {fileID: 1322644435}
+  shipsAffectingCamera: []
+  targetOffset: {x: 0, y: 0, z: 0}
+  cameraPullDistance: 0.5
+  cameraPullEffect: 1
+  cameraPullMask:
+    serializedVersion: 2
+    m_Bits: 1536
+  cameraHeight: 0
+  minCameraHeight: 10
+  maxCameraHeight: 100
+  lerpSpeed: 2
 --- !u!114 &1663614989
 MonoBehaviour:
   m_ObjectHideFlags: 0
