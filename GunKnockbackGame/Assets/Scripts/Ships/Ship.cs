@@ -28,6 +28,13 @@ public class Ship : MonoBehaviour {
     public GameObject weaponInfoPrefab;
     public Canvas MainUICanvas;
 
+    [Header("Rubber banding behavior")]
+    public GameObject player;
+    public float distanceTillRubberbanding;
+    [Range(0, 100)]
+    public float rubberBandingPower;
+
+
     public float _goalDispHP
     {
         get
@@ -84,6 +91,7 @@ public class Ship : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        this.player = GameObject.FindGameObjectWithTag("Player");
         var weaponsComponents = GetComponentsInChildren(typeof(WeaponBehavior));
         WeaponBehavior[] w = new WeaponBehavior[weaponsComponents.Length];
         for(int i = 0;i < weaponsComponents.Length; i++)
@@ -116,6 +124,14 @@ public class Ship : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if(shipType != ShipType.Player)
+        {
+            var deltaPlayer = (this.transform.position - player.transform.position);
+            if(deltaPlayer.sqrMagnitude < this.distanceTillRubberbanding * this.distanceTillRubberbanding)
+            {
+                velocity += deltaPlayer.normalized * this.rubberBandingPower;
+            } 
+        }
         if(_dispHP != _goalDispHP)
         {
             if (Mathf.Abs(_dispHP - _goalDispHP) < 1)
