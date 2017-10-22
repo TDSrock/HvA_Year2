@@ -61,6 +61,12 @@ namespace Datastruct_and_algo_excersizes.StateMananger
                 throw new StateManagerNotValidatedException("State machine has not been validated yet. Did you forget to validate the statemachine?");
             }
 
+            if(this.isInEndState)   //once we know we are in an endState we won't be able to move out of it anyway
+            {
+                currentState.OnStayInState(this.agent);
+                return;
+            }
+
             State<T> changeState;
             if (this.currentState.EvaluateAgent(this.agent, out changeState))
             {
@@ -68,11 +74,9 @@ namespace Datastruct_and_algo_excersizes.StateMananger
             }
             else
             {
-                if(!this.isInEndState)//once we know we are in an endState we won't be able to move out of it anyway
-                    this.isInEndState = this.endStates.Contains(currentState);
+                this.isInEndState = this.endStates.Contains(currentState);
                 currentState.OnStayInState(this.agent);
             }
-
         }
 
         public void ChangeState(State<T> stateToChangeToo)
