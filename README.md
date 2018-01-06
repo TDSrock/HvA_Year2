@@ -19,18 +19,18 @@ For this game I still intend to write out a post mortem which will be added here
 Find (slightly broken) builds of the game [HERE](https://drive.google.com/open?id=12pVm9czWafH-riXYUVewahrFci0iRxuk).
 
 # [](#header-1)Datastruct and algo excersizes
-This doc contains three different excersizes that I all wrote solo(officialy I was working toghter with Mark Griekspoor, however this student never submitted any work...). Each of these were simple exceriszes passed down by the teacher. These assignements are also included in the folder for ease of use and readabilty of the repo for other users. This also ensures that I won't lose the .pdf's when I leave the HvA.
+This doc contains three different excersizes that I all wrote solo(officialy I was working toghter with Mark Griekspoor, however this student never submitted any work... Also after the first excersize I had removed him from our "team"). Each of these were simple exceriszes passed down by the teacher. These assignements are also included in the folder for ease of use and readabilty of the repo for other users. This also ensures that I won't lose the .pdf's when I leave the HvA.
 
 The PDF documents speak for themselves here.
 
 #### [](#header-4)assignment-1-big-o-highscores.pdf
-The excersize pdf is findable [HERE](Docs/assignment-1-big-o-highscores.pdf).
-My answer pdf is findable [HERE](Docs/Practical%201%20%E2%80%93%20Big-O-Highscores%20SjorsGielen_MarcGriekspoor.pdf).
+The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-1-big-o-highscores.pdf).
+My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%201%20%E2%80%93%20Big-O-Highscores%20SjorsGielen_MarcGriekspoor.pdf).
 
 #### [](#header-4)assignment-2-inventorio.pdf
-The excersize pdf is findable [HERE](Docs/assignment-2-inventorio.pdf).
-My answer pdf is findable [HERE](Docs/Practical%202%20%E2%80%93%20Invertorio%20SjorsGielen.pdf).
+The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-2-inventorio.pdf).
+My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%202%20%E2%80%93%20Invertorio%20SjorsGielen.pdf).
 
 #### [](#header-4)assignment-3-hearthstats.pdf
-The excersize pdf is findable [HERE](Docs/assignment-3-hearthstats.pdf).
-My answer pdf is findable [HERE](Docs/Practical%203%20%E2%80%93%20HearthStats%20SjorsGielen.pdf).
+The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-3-hearthstats.pdf).
+My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%203%20%E2%80%93%20HearthStats%20SjorsGielen.pdf).
