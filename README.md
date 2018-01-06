@@ -23,14 +23,14 @@ This doc contains three different excersizes that I all wrote solo(officialy I w
 
 The PDF documents speak for themselves here.
 
-#### [](#header-4)assignment-1-big-o-highscores.pdf
+#### [](#header-4)assignment 1 big o highscores
 The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-1-big-o-highscores.pdf).
 My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%201%20%E2%80%93%20Big-O-Highscores%20SjorsGielen_MarcGriekspoor.pdf).
 
-#### [](#header-4)assignment-2-inventorio.pdf
+#### [](#header-4)assignment 2 inventorio
 The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-2-inventorio.pdf).
 My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%202%20%E2%80%93%20Invertorio%20SjorsGielen.pdf).
 
-#### [](#header-4)assignment-3-hearthstats.pdf
+#### [](#header-4)assignment 3 hearthstats
 The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-3-hearthstats.pdf).
 My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%203%20%E2%80%93%20HearthStats%20SjorsGielen.pdf).
