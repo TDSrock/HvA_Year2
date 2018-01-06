@@ -1,37 +1,36 @@
-## Welcome to GitHub Pages
+This repo was really just a combination of lazyness and efficiency.
 
-You can use the [editor on GitHub](https://github.com/TDSrock/HvA_Year2/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Instead of creating two seperate repo's I just created one. Is this lazy? Yes. Is this effecient? also, yes.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+So far this repo contains:
+GunKockBackGame (project)
+and
+Datastruct and algo excersizes (class)
 
-### Markdown
+# [](#header-1)GunKockBackGame
+This was a fun game to program. This game was the first real game I worked on in unity. (Summer game project was techicly first but the amount of progress we made in that makes it negligable)
+The core concept of this game was a bullet hell game in which the only (major) method of movement was firing your weapons.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+![](https://i.imgur.com/1F7rhsw.png)
+The player in the center surrouneded by enemies.
 
-```markdown
-Syntax highlighted code block
+For this game I still intend to write out a post mortem which will be added here once it is done.
 
-# Header 1
-## Header 2
-### Header 3
+Find (slightly broken) builds of the game [HERE](https://drive.google.com/open?id=12pVm9czWafH-riXYUVewahrFci0iRxuk).
 
-- Bulleted
-- List
+# [](#header-1)Datastruct and algo excersizes
+This doc contains three different excersizes that I all wrote solo(officialy I was working toghter with Mark Griekspoor, however this student never submitted any work...). Each of these were simple exceriszes passed down by the teacher. These assignements are also included in the folder for ease of use and readabilty of the repo for other users. This also ensures that I won't lose the .pdf's when I leave the HvA.
 
-1. Numbered
-2. List
+The PDF documents speak for themselves here.
 
-**Bold** and _Italic_ and `Code` text
+#### [](#header-4)assignment-1-big-o-highscores.pdf
+The excersize pdf is findable [HERE](Docs/assignment-1-big-o-highscores.pdf).
+My answer pdf is findable [HERE](Docs/Practical%201%20%E2%80%93%20Big-O-Highscores%20SjorsGielen_MarcGriekspoor.pdf).
 
-[Link](url) and ![Image](src)
-```
+#### [](#header-4)assignment-2-inventorio.pdf
+The excersize pdf is findable [HERE](Docs/assignment-2-inventorio.pdf).
+My answer pdf is findable [HERE](Docs/Practical%202%20%E2%80%93%20Invertorio%20SjorsGielen.pdf).
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/TDSrock/HvA_Year2/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+#### [](#header-4)assignment-3-hearthstats.pdf
+The excersize pdf is findable [HERE](Docs/assignment-3-hearthstats.pdf).
+My answer pdf is findable [HERE](Docs/Practical%203%20%E2%80%93%20HearthStats%20SjorsGielen.pdf).
