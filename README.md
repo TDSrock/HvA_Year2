@@ -1,7 +1,3 @@
-This repo was really just a combination of lazyness and efficiency.
-
-Instead of creating two seperate repo's I just created one. Is this lazy? Yes. Is this effecient? also, yes.
-
 So far this repo contains:
 GunKockBackGame (project)
 and
@@ -19,7 +15,7 @@ For this game I still intend to write out a post mortem which will be added here
 Find (slightly broken) builds of the game [HERE](https://drive.google.com/open?id=12pVm9czWafH-riXYUVewahrFci0iRxuk).
 
 # [](#header-1)Datastruct and algo excersizes
-This doc contains three different excersizes that I all wrote solo(officialy I was working toghter with Mark Griekspoor, however this student never submitted any work... Also after the first excersize I had removed him from our "team"). Each of these were simple exceriszes passed down by the teacher. These assignements are also included in the folder for ease of use and readabilty of the repo for other users. This also ensures that I won't lose the .pdf's when I leave the HvA.
+This folder of the repo contains three different excersizes. Each of these were simple exceriszes passed down by the teacher. These assignements are also included in the folder for ease of use and readabilty of the repo for other users.
 
 The PDF documents speak for themselves here.
 
@@ -35,4 +31,4 @@ My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%202%20
 The excersize pdf is findable [HERE](https://tdsrock.github.io/Docs/assignment-3-hearthstats.pdf).
 My answer pdf is findable [HERE](https://tdsrock.github.io/Docs/Practical%203%20%E2%80%93%20HearthStats%20SjorsGielen.pdf).
 
-[back](./)
+[back](https://tdsrock.github.io/Projects)
